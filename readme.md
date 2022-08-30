@@ -3,22 +3,25 @@
 ## Why this tutorial
 Neither Azure nor azurerm terraform clearly lay out **how to connect a terraform managed staticwebapp to a github repo using az cli**.  Azure docs for hooking this up assume the user wants to _create_ the infrastructure _and_ hook it up to GitHub, which is obviously not the case.  Azurerm simply gives a link to the aforementioned docs and leaves the user without a clear path to hook up the existing infrastructure to GitHub. 
 
-**TLDR; Use `az staticwebapp upate`** to [Add GitHub Repo to staticwebapp](https://github.com/joshua-koehler/azure-staticwebapp-terraform#add-github-repo-to-staticwebapp) after provisioning with terraform.
-
 Through exploration of az staticwebapp submodules and trial and error, I figured out how to connect the repo after terraform deployment as well as how to modify the generated github actions workflow to deploy a vanilla js app successfully (it breaks by default).  It's my hope this will be useful to others working through similiar isues on their own.
 
-## How I built and automate this
+## TLDR; 
+**Use `az staticwebapp upate`** to [Add GitHub Repo to staticwebapp](https://github.com/joshua-koehler/azure-staticwebapp-terraform#add-github-repo-to-staticwebapp) **after provisioning with terraform.**
+
+## How I built and automated this
 * Terraform defines infrastructure for staticwebapp
 * AZ CLI script hooks up this repo to the staticwebapp
 * Github actions automatically triggers deploy on push to repo
 
 ## Reference links
 * [Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) 
-* [quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=vanilla-javascript) to build and customize a new static site. (I did this my own way with terraform and cli commands but these docs are helpful nonetheless).
+* [quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=vanilla-javascript) to build and customize a new static site for various use-cases.  The terraform + azcli use case isn't covered there (hence this tutorial) but the material is still useful for a general overview and may be applicable to your use-case.
 
 ## Get up and running quickly 
-Prerequisite dependencies
+### Prerequisite dependencies
 - az cli installed
+
+### Steps
 
 1. Get a Github Personal Access Token (see Authentication below for details) and set as env var.
 ```
@@ -28,14 +31,11 @@ export GITHUB_TOKEN = "your token"
 2. Create a GitHub repo - forking mine is easiest but not necessary - just have a master branch
   - set the repourl variable in connectGitHubRepoToInfrastructure.sh to your GH repo
 
-3. Run this script in a bash terminal to deploy everything with defaults
+3. Clone this repo and run deploy.sh bash script to deploy everything with defaults
 ```
 git clone https://github.com/joshua-koehler/terraform-azure-static-webapp
-cd terraform-azure-static-webapp/terraform_infrastructure
-az login
-terraform init
-terraform apply -auto-approve
-bash ../devops/connectGitHubRepoToInfrastructure
+cd terraform-azure-static-webapp
+./deploy.sh
 ```
 
 4. Edit the auto-committed .github/workflows/azure-static-web-apps-xxxxxxxxxxx.yml file for your build specs and commit to your repo
