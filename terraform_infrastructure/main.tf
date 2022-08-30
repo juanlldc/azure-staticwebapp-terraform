@@ -16,15 +16,15 @@ locals {
   location = "centralus"
 }
 
-resource "azurerm_resource_group" "az204" {
+resource "azurerm_resource_group" "this" {
   name = local.projectname
   location = local.location
 }
 
-resource "azurerm_static_site" "az204" {
-  name                = "az204staticwebapp"
-  resource_group_name = azurerm_resource_group.az204.name
-  location            = azurerm_resource_group.az204.location
+resource "azurerm_static_site" "this" {
+  name                = local.projectname
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
 }
 
 output "static_web_app_id" {

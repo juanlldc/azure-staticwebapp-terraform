@@ -1,7 +1,7 @@
 # Azure Static Web App With Terraform
 
 ## Why this tutorial
-Neither Azure nor azurerm terraform clearly lay out *how to connect a terraform managed staticwebapp to a github repo using az cli*.  Azure docs for hooking this up assume the user wants to _create_ the infrastructure _and_ hook it up to GitHub, which is obviously not the case.  Azurerm simply gives a link to the aforementioned docs and leaves the user without a clear path to hook up the existing infrastructure to GitHub.
+Neither Azure nor azurerm terraform clearly lay out **how to connect a terraform managed staticwebapp to a github repo using az cli**.  Azure docs for hooking this up assume the user wants to _create_ the infrastructure _and_ hook it up to GitHub, which is obviously not the case.  Azurerm simply gives a link to the aforementioned docs and leaves the user without a clear path to hook up the existing infrastructure to GitHub.
 
 Through exploration of az staticwebapp submodules and trial and error, I figured out how to connect the repo after terraform deployment as well as how to modify the generated github actions workflow to deploy a vanilla js app successfully (it breaks by default).  It's my hope this will be useful to others working through similiar isues on their own.
 
