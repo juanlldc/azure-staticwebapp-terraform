@@ -6,7 +6,7 @@ Neither Azure nor azurerm terraform clearly lay out **how to connect a terraform
 Through exploration of az staticwebapp submodules and trial and error, I figured out how to connect the repo after terraform deployment as well as how to modify the generated github actions workflow to deploy a vanilla js app successfully (it breaks by default).  It's my hope this will be useful to others working through similiar isues on their own.
 
 ## TLDR; 
-**Use `az staticwebapp upate`** to [Add GitHub Repo to staticwebapp](https://github.com/joshua-koehler/azure-staticwebapp-terraform#add-github-repo-to-staticwebapp) **after provisioning with terraform.**
+**Use `az staticwebapp upate` to** [Add GitHub Repo to staticwebapp](https://github.com/joshua-koehler/azure-staticwebapp-terraform#add-github-repo-to-staticwebapp) **after provisioning with terraform.**
 
 ## How I built and automated this
 * Terraform defines infrastructure for staticwebapp
@@ -33,8 +33,8 @@ export GITHUB_TOKEN = "your token"
 
 3. Clone this repo and run deploy.sh bash script to deploy everything with defaults
 ```
-git clone https://github.com/joshua-koehler/terraform-azure-static-webapp
-cd terraform-azure-static-webapp
+git clone https://github.com/joshua-koehler/azure-staticwebapp-terraform
+cd azure-staticwebapp-terraform
 ./deploy.sh
 ```
 
