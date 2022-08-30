@@ -15,6 +15,8 @@ Through exploration of az staticwebapp submodules and trial and error, I figured
 * [quickstart](https://docs.microsoft.com/azure/static-web-apps/getting-started?tabs=vanilla-javascript) to build and customize a new static site. (I did this my own way with terraform and cli commands but these docs are helpful nonetheless).
 
 ## Get up and running quickly 
+Prerequisite dependencies
+- az cli installed
 
 1. Get a Github Personal Access Token (see Authentication below for details) and set as env var.
 ```
